@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StartupX</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+}
+
+body{
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  color:white;
+  overflow-x:hidden;
+}
+
+/* ===== NAVBAR ===== */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 10%;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(15px);
+}
+
+.logo{
+  font-size:28px;
+  font-weight:700;
+}
+
+nav a{
+  margin:0 15px;
+  color:white;
+  text-decoration:none;
+  font-weight:500;
+  position:relative;
+}
+
+nav a::after{
+  content:'';
+  position:absolute;
+  width:0;
+  height:2px;
+  background:white;
+  left:0;
+  bottom:-5px;
+  transition:0.3s;
+}
+
+nav a:hover::after{
+  width:100%;
+}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:80vh;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 10%;
+}
+
+.hero-text{
+  max-width:500px;
+  animation:fadeLeft 1.2s;
+}
+
+.hero-text h1{
+  font-size:48px;
+}
+
+.hero-text p{
+  margin:20px 0;
+}
+
+.hero-text button{
+  padding:14px 30px;
+  border:none;
+  border-radius:30px;
+  background:white;
+  color:#764ba2;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.hero-text button:hover{
+  transform:scale(1.1);
+}
+
+.hero-img{
+  animation:float 4s infinite ease-in-out;
+}
+
+.hero-img img{
+  width:380px;
+}
+
+/* ===== PRODUCTS ===== */
+section{
+  padding:80px 10%;
+}
+
+.title{
+  text-align:center;
+  font-size:36px;
+  margin-bottom:50px;
+}
+
+.products{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:40px;
+}
+
+.product-card{
+  background:rgba(255,255,255,0.15);
+  backdrop-filter:blur(15px);
+  padding:25px;
+  border-radius:20px;
+  text-align:center;
+  cursor:pointer;
+  transition:0.4s;
+}
+
+.product-card:hover{
+  transform:translateY(-15px) scale(1.05);
+}
+
+.product-card img{
+  width:100%;
+  border-radius:15px;
+  margin-bottom:15px;
+}
+
+/* ===== MODAL ===== */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.7);
+  justify-content:center;
+  align-items:center;
+  z-index:200;
+}
+
+.modal-box{
+  background:white;
+  color:black;
+  width:90%;
+  max-width:400px;
+  border-radius:20px;
+  padding:25px;
+  text-align:center;
+  animation:zoom 0.4s;
+}
+
+.modal-box img{
+  width:100%;
+  border-radius:15px;
+}
+
+.close-btn{
+  margin-top:15px;
+  padding:10px 25px;
+  border:none;
+  background:#764ba2;
+  color:white;
+  border-radius:20px;
+  cursor:pointer;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeLeft{
+  from{opacity:0; transform:translateX(-80px);}
+  to{opacity:1; transform:translateX(0);}
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-20px);}
+}
+
+@keyframes zoom{
+  from{transform:scale(0.6);}
+  to{transform:scale(1);}
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .hero{
+    flex-direction:column;
+    text-align:center;
+  }
+  .hero-img img{
+    width:280px;
+    margin-top:40px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">StartupX</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<div class="hero" id="home">
+  <div class="hero-text">
+    <h1>Next-Gen Digital Products</h1>
+    <p>AI tools & cloud platforms for modern startups.</p>
+    <button onclick="scrollToProducts()">Explore Products</button>
+  </div>
+  <div class="hero-img">
+    <img src="https://illustrations.popsy.co/white/rocket-launch.svg">
+  </div>
+</div>
+
+<!-- ===== PRODUCTS ===== -->
+<section id="products">
+  <h2 class="title">Our Products</h2>
+
+  <div class="products">
+    <div class="product-card" onclick="openModal('AI Analytics','$99 / month','https://images.unsplash.com/photo-1581091012184-5c8b3a84d6e2')">
+      <img src="https://images.unsplash.com/photo-1581091012184-5c8b3a84d6e2">
+      <h3>AI Analytics</h3>
+    </div>
+
+    <div class="product-card" onclick="openModal('Cloud Platform','$149 / month','https://images.unsplash.com/photo-1551288049-bebda4e38f71')">
+      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71">
+      <h3>Cloud Platform</h3>
+    </div>
+
+    <div class="product-card" onclick="openModal('Marketing Automation','$199 / month','https://images.unsplash.com/photo-1556155092-8707de31f9c4')">
+      <img src="https://images.unsplash.com/photo-1556155092-8707de31f9c4">
+      <h3>Marketing Automation</h3>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MODAL ===== -->
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <img id="modalImg">
+    <h2 id="modalTitle"></h2>
+    <p id="modalPrice"></p>
+    <p>This product helps your startup grow faster using modern technology.</p>
+    <button class="close-btn" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+function openModal(title, price, img){
+  document.getElementById("modal").style.display="flex";
+  document.getElementById("modalTitle").innerText=title;
+  document.getElementById("modalPrice").innerText=price;
+  document.getElementById("modalImg").src=img;
+}
+
+function closeModal(){
+  document.getElementById("modal").style.display="none";
+}
+
+function scrollToProducts(){
+  document.getElementById("products").scrollIntoView({behavior:"smooth"});
+}
+</script>
+
+</body>
+</html>
